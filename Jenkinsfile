@@ -4,9 +4,9 @@ node('master')
     {
         git 'https://github.com/rushi634/maven.git'             
     }
-   docker.image('maven:3.8.1-adoptopenjdk-11').inside('-v /home/ubuntu/.jenkins/workspace/SCM-pipeline') {
-        stage('ContiniousBuild') {
-          sh 'mvn package'
+    stage('ContiniousBuild'){
+        docker.image('maven:3.8.1-adoptopenjdk-11').inside('-v /home/ubuntu/.jenkins/workspace/SCM-pipeline') {
+         sh 'mvn package'
         }
     }
     stage('ContinuousDeployment')
